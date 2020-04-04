@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package user.v1;
 import "google/protobuf/timestamp.proto";
+import "task.proto"; 
 
 service UserService {
     rpc Create(CreateUserRequest) returns (User) {}; 
@@ -11,6 +12,7 @@ service UserService {
     rpc SubmitReview(SubmitReviewRequest) returns (Review) {}; 
     rpc UpdateScore(UpdateScoreRequest) returns (User) {}; 
     rpc UserTags(UserTagsRequest) returns (TagsResult) {};
+    rpc UserTasks(UserTaskRequest) returns (TaskResult) {}; 
 }
 
 /* CreateUserRequest represents a request to create a new user with a given role */
@@ -18,6 +20,7 @@ service UserService {
 message CreateUserRequest {
     Role role = 1; // Indicates the users Role (Helper, Needer)
     string name = 2; 
+    int32 phone_number = 3; 
 }
 
 /* DeleteUserRequest represents a request to delete a user provided uuid */
@@ -58,7 +61,7 @@ message ReviewResponse {
 message SubmitReviewRequest {
     UUID user_id = 1; 
     string review = 2; //Review string, should probably be limited in length 
-    int32 rating = 3;  // User rating between 1-5 TODO: make enum 
+    int32 rating = 3;  // User rating between 1-5
 }
 
 /* UpdatePointsRequest represents a request to updated the point value for the user */ 
@@ -81,6 +84,20 @@ message TagsResult {
     repeated string tags = 1; // list of user tags 
 }
 
+/* UserTagsRequest represents a request to get the tasks for a specific status for a user  */ 
+
+message UserTaskRequest {
+    UUID user_id = 1; 
+    task.v1.Status status = 2;
+}
+
+
+/* UserTagsReuslt represents a repsonse containing the list of User tasks */ 
+
+message TaskResult {
+    repeated task.v1.Task tasks = 1; 
+}
+
 message UUID {
     string value = 1; 
   }
@@ -91,16 +108,18 @@ message UUID {
 message User {
     UUID id = 1;
     string name = 2;
-    google.protobuf.Timestamp joined_tstamp = 3;
-    Role role = 4;  // HLPR, NDR
-    float avg_rating = 5;   
-    int32 score = 6; 
-    string city = 7;
-    string country = 8;
-    string postalCode = 9;
-    float lat = 10;
-    float lon = 11;
-    Review reviews = 12; 
+    int32 phone_number = 3;
+    google.protobuf.Timestamp joined_tstamp = 4;
+    Role role = 5;  // HLPR, NDR
+    float avg_rating = 6;   
+    int32 score = 7; 
+    string city = 8;
+    string country = 9;
+    string postalCode = 10;
+    float lat = 11;
+    float lon = 12;
+    Review reviews = 13; 
+    task.v1.Task tasks = 14; 
   }
   
 enum Role {

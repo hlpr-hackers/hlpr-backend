@@ -5,15 +5,16 @@ import logging
 
 import grpc
 
-import user_pb2
-import user_pb2_grpc
+import task_pb2
+import task_pb2_grpc
 
 
-class UserServicer(user_pb2_grpc.UserServiceServicer):
-    """Provides methods that implement functionality of user server."""
+class TaskServicer(task_pb2_grpc.TaskServiceServicer):
+    """Provides methods that implement functionality of task server."""
 
     def __init__(self):
-        pass 
+         # Create database connection
+        self.connection = conn._connect()
 
     def Create(self, request, context): 
         pass
@@ -24,22 +25,20 @@ class UserServicer(user_pb2_grpc.UserServiceServicer):
     def Nearby(self, request, context):
         pass
 
-    def Reviews(self, request, context):
+    def Assign(self, request, context):
+        pass 
+
+    def SetStatus(self, request, context):
         pass
 
-    def SubmitReview(self, request, context):
+    def ListTags(self, request, context):
         pass
 
-    def UpdateScore(self, request, context): 
-        pass
-
-    def UserTags(self, request, context):
-        pass
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    user_pb2_grpc.add_UserServiceServicer_to_server(
-        UserServiceServicer(), server)
+    task_pb2_grpc.add_TaskServiceServicer_to_server(
+        TaskServiceServicer(), server)
     server.add_insecure_port('[::]:50051')
     server.start()
     server.wait_for_termination()
@@ -47,4 +46,4 @@ def serve():
 
 if __name__ == '__main__':
     logging.basicConfig()
-    serve()
+    serve()    

@@ -49,6 +49,11 @@ class UserServiceStub(object):
         request_serializer=user__pb2.UserTagsRequest.SerializeToString,
         response_deserializer=user__pb2.TagsResult.FromString,
         )
+    self.UserTasks = channel.unary_unary(
+        '/user.v1.UserService/UserTasks',
+        request_serializer=user__pb2.UserTaskRequest.SerializeToString,
+        response_deserializer=user__pb2.TaskResult.FromString,
+        )
 
 
 class UserServiceServicer(object):
@@ -104,6 +109,13 @@ class UserServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def UserTasks(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_UserServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -141,6 +153,11 @@ def add_UserServiceServicer_to_server(servicer, server):
           servicer.UserTags,
           request_deserializer=user__pb2.UserTagsRequest.FromString,
           response_serializer=user__pb2.TagsResult.SerializeToString,
+      ),
+      'UserTasks': grpc.unary_unary_rpc_method_handler(
+          servicer.UserTasks,
+          request_deserializer=user__pb2.UserTaskRequest.FromString,
+          response_serializer=user__pb2.TaskResult.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

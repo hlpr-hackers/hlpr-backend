@@ -42,7 +42,6 @@ service TaskService {
       UUID task_id = 1; 
   }
 
-
 /* DeleteTaskRequest represents a request to to assign a task to a user */
   message AssignTaskRequest {
       UUID user_id = 1; 
