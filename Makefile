@@ -3,4 +3,4 @@ compile_proto_py:
 
 
 compile_grpc_py: 
-	python -m grpc_tools.protoc -I protos --python_out=. --grpc_python_out=. protos/user.proto protos/task.proto
+	python -m grpc_tools.protoc -I protos --python_out=./backend --grpc_python_out=./backend protos/user.proto protos/task.proto
