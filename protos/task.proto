@@ -62,11 +62,11 @@ service TaskService {
     required UUID id = 1;
     string name = 2;
     Status status = 3; 
-    google.protobuf.Timestamp submission_tstamp = 3;
-    string description = 4;
-    string tag = 5;
-    int32 points = 6; 
-    google.protobuf.Timestamp completed_tstamp = 9;
+    google.protobuf.Timestamp submission_tstamp = 4;
+    string description = 5;
+    string tag = 6;
+    int32 points = 7; 
+    google.protobuf.Timestamp completed_tstamp = 8;
   }  
 
   enum Status {

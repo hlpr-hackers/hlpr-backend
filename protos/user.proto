@@ -55,7 +55,7 @@ message UpdatePointsRequest {
 }
 
 message PointsResult {
-    int32 total_points
+    int32 total_points = 1; 
 }
 
 message UserTagsRequest {
@@ -63,7 +63,7 @@ message UserTagsRequest {
 }
 
 message TagsResult {
-    repeated tags = 1; 
+    repeated string tags = 1; 
 }
 
 
