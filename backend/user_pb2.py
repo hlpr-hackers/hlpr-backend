@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='user.v1',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\nuser.proto\x12\x07user.v1\x1a\x1fgoogle/protobuf/timestamp.proto\">\n\x11\x43reateUserRequest\x12\x1b\n\x04role\x18\x01 \x01(\x0e\x32\r.user.v1.Role\x12\x0c\n\x04name\x18\x02 \x01(\t\"3\n\x11\x44\x65leteUserRequest\x12\x1e\n\x07user_id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\"V\n\rNearbyRequest\x12\x0b\n\x03lat\x18\x01 \x01(\x02\x12\x0b\n\x03lon\x18\x02 \x01(\x02\x12\x0e\n\x06radius\x18\x03 \x01(\x05\x12\x1b\n\x04role\x18\x04 \x01(\x0e\x32\r.user.v1.Role\",\n\x0cNearbyResult\x12\x1c\n\x05users\x18\x01 \x03(\x0b\x32\r.user.v1.User\"/\n\rReviewRequest\x12\x1e\n\x07user_id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\"2\n\x0eReviewResponse\x12 \n\x07reviews\x18\x01 \x03(\x0b\x32\x0f.user.v1.Review\"U\n\x13SubmitReviewRequest\x12\x1e\n\x07user_id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\x12\x0e\n\x06review\x18\x02 \x01(\t\x12\x0e\n\x06rating\x18\x03 \x01(\x05\"D\n\x13UpdatePointsRequest\x12\x1e\n\x07user_id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\x12\r\n\x05value\x18\x02 \x01(\x05\"$\n\x0cPointsResult\x12\x14\n\x0ctotal_points\x18\x01 \x01(\x05\"1\n\x0fUserTagsRequest\x12\x1e\n\x07user_id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\"\x1a\n\nTagsResult\x12\x0c\n\x04tags\x18\x01 \x03(\t\"\x15\n\x04UUID\x12\r\n\x05value\x18\x01 \x01(\t\"\x92\x02\n\x04User\x12\x19\n\x02id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x31\n\rjoined_tstamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1b\n\x04role\x18\x04 \x01(\x0e\x32\r.user.v1.Role\x12\x12\n\navg_rating\x18\x05 \x01(\x05\x12\x0e\n\x06points\x18\x06 \x01(\x05\x12\x0c\n\x04\x63ity\x18\x07 \x01(\t\x12\x0f\n\x07\x63ountry\x18\x08 \x01(\t\x12\x12\n\npostalCode\x18\t \x01(\t\x12\x0b\n\x03lat\x18\n \x01(\x02\x12\x0b\n\x03lon\x18\x0b \x01(\x02\x12 \n\x07reviews\x18\x0c \x01(\x0b\x32\x0f.user.v1.Review\"o\n\x06Review\x12\x19\n\x02id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\x12\x0e\n\x06review\x18\x02 \x01(\t\x12\x0e\n\x06rating\x18\x03 \x01(\x05\x12*\n\x06tstamp\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp*\x1b\n\x04Role\x12\x08\n\x04HLPR\x10\x00\x12\t\n\x05NEEDR\x10\x01\x32\xb1\x03\n\x0bUserService\x12\x35\n\x06\x43reate\x12\x1a.user.v1.CreateUserRequest\x1a\r.user.v1.User\"\x00\x12\x35\n\x06\x44\x65lete\x12\x1a.user.v1.DeleteUserRequest\x1a\r.user.v1.User\"\x00\x12\x39\n\x06Nearby\x12\x16.user.v1.NearbyRequest\x1a\x15.user.v1.NearbyResult\"\x00\x12<\n\x07Reviews\x12\x16.user.v1.ReviewRequest\x1a\x17.user.v1.ReviewResponse\"\x00\x12?\n\x0cSubmitReview\x12\x1c.user.v1.SubmitReviewRequest\x1a\x0f.user.v1.Review\"\x00\x12=\n\x0cUpdatePoints\x12\x1c.user.v1.UpdatePointsRequest\x1a\r.user.v1.User\"\x00\x12;\n\x08UserTags\x12\x18.user.v1.UserTagsRequest\x1a\x13.user.v1.TagsResult\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\nuser.proto\x12\x07user.v1\x1a\x1fgoogle/protobuf/timestamp.proto\">\n\x11\x43reateUserRequest\x12\x1b\n\x04role\x18\x01 \x01(\x0e\x32\r.user.v1.Role\x12\x0c\n\x04name\x18\x02 \x01(\t\"3\n\x11\x44\x65leteUserRequest\x12\x1e\n\x07user_id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\"V\n\rNearbyRequest\x12\x0b\n\x03lat\x18\x01 \x01(\x02\x12\x0b\n\x03lon\x18\x02 \x01(\x02\x12\x0e\n\x06radius\x18\x03 \x01(\x05\x12\x1b\n\x04role\x18\x04 \x01(\x0e\x32\r.user.v1.Role\",\n\x0cNearbyResult\x12\x1c\n\x05users\x18\x01 \x03(\x0b\x32\r.user.v1.User\"/\n\rReviewRequest\x12\x1e\n\x07user_id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\"2\n\x0eReviewResponse\x12 \n\x07reviews\x18\x01 \x03(\x0b\x32\x0f.user.v1.Review\"U\n\x13SubmitReviewRequest\x12\x1e\n\x07user_id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\x12\x0e\n\x06review\x18\x02 \x01(\t\x12\x0e\n\x06rating\x18\x03 \x01(\x05\"C\n\x12UpdateScoreRequest\x12\x1e\n\x07user_id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\x12\r\n\x05value\x18\x02 \x01(\x05\"1\n\x0fUserTagsRequest\x12\x1e\n\x07user_id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\"\x1a\n\nTagsResult\x12\x0c\n\x04tags\x18\x01 \x03(\t\"\x15\n\x04UUID\x12\r\n\x05value\x18\x01 \x01(\t\"\x91\x02\n\x04User\x12\x19\n\x02id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x31\n\rjoined_tstamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1b\n\x04role\x18\x04 \x01(\x0e\x32\r.user.v1.Role\x12\x12\n\navg_rating\x18\x05 \x01(\x02\x12\r\n\x05score\x18\x06 \x01(\x05\x12\x0c\n\x04\x63ity\x18\x07 \x01(\t\x12\x0f\n\x07\x63ountry\x18\x08 \x01(\t\x12\x12\n\npostalCode\x18\t \x01(\t\x12\x0b\n\x03lat\x18\n \x01(\x02\x12\x0b\n\x03lon\x18\x0b \x01(\x02\x12 \n\x07reviews\x18\x0c \x01(\x0b\x32\x0f.user.v1.Review\"w\n\x06Review\x12\x19\n\x02id\x18\x01 \x01(\x0b\x32\r.user.v1.UUID\x12\x0e\n\x06review\x18\x02 \x01(\t\x12\x0e\n\x06rating\x18\x03 \x01(\x05\x12\x32\n\x0e\x63reated_tstamp\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp*\x1b\n\x04Role\x12\x08\n\x04HLPR\x10\x00\x12\t\n\x05NEEDR\x10\x01\x32\xaf\x03\n\x0bUserService\x12\x35\n\x06\x43reate\x12\x1a.user.v1.CreateUserRequest\x1a\r.user.v1.User\"\x00\x12\x35\n\x06\x44\x65lete\x12\x1a.user.v1.DeleteUserRequest\x1a\r.user.v1.User\"\x00\x12\x39\n\x06Nearby\x12\x16.user.v1.NearbyRequest\x1a\x15.user.v1.NearbyResult\"\x00\x12<\n\x07Reviews\x12\x16.user.v1.ReviewRequest\x1a\x17.user.v1.ReviewResponse\"\x00\x12?\n\x0cSubmitReview\x12\x1c.user.v1.SubmitReviewRequest\x1a\x0f.user.v1.Review\"\x00\x12;\n\x0bUpdateScore\x12\x1b.user.v1.UpdateScoreRequest\x1a\r.user.v1.User\"\x00\x12;\n\x08UserTags\x12\x18.user.v1.UserTagsRequest\x1a\x13.user.v1.TagsResult\"\x00\x62\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -43,8 +43,8 @@ _ROLE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1095,
-  serialized_end=1122,
+  serialized_start=1063,
+  serialized_end=1090,
 )
 _sym_db.RegisterEnumDescriptor(_ROLE)
 
@@ -313,22 +313,22 @@ _SUBMITREVIEWREQUEST = _descriptor.Descriptor(
 )
 
 
-_UPDATEPOINTSREQUEST = _descriptor.Descriptor(
-  name='UpdatePointsRequest',
-  full_name='user.v1.UpdatePointsRequest',
+_UPDATESCOREREQUEST = _descriptor.Descriptor(
+  name='UpdateScoreRequest',
+  full_name='user.v1.UpdateScoreRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='user_id', full_name='user.v1.UpdatePointsRequest.user_id', index=0,
+      name='user_id', full_name='user.v1.UpdateScoreRequest.user_id', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='value', full_name='user.v1.UpdatePointsRequest.value', index=1,
+      name='value', full_name='user.v1.UpdateScoreRequest.value', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -347,38 +347,7 @@ _UPDATEPOINTSREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=495,
-  serialized_end=563,
-)
-
-
-_POINTSRESULT = _descriptor.Descriptor(
-  name='PointsResult',
-  full_name='user.v1.PointsResult',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='total_points', full_name='user.v1.PointsResult.total_points', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=565,
-  serialized_end=601,
+  serialized_end=562,
 )
 
 
@@ -408,8 +377,8 @@ _USERTAGSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=603,
-  serialized_end=652,
+  serialized_start=564,
+  serialized_end=613,
 )
 
 
@@ -439,8 +408,8 @@ _TAGSRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=654,
-  serialized_end=680,
+  serialized_start=615,
+  serialized_end=641,
 )
 
 
@@ -470,8 +439,8 @@ _UUID = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=682,
-  serialized_end=703,
+  serialized_start=643,
+  serialized_end=664,
 )
 
 
@@ -512,13 +481,13 @@ _USER = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='avg_rating', full_name='user.v1.User.avg_rating', index=4,
-      number=5, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
+      number=5, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='points', full_name='user.v1.User.points', index=5,
+      name='score', full_name='user.v1.User.score', index=5,
       number=6, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -578,8 +547,8 @@ _USER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=706,
-  serialized_end=980,
+  serialized_start=667,
+  serialized_end=940,
 )
 
 
@@ -612,7 +581,7 @@ _REVIEW = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='tstamp', full_name='user.v1.Review.tstamp', index=3,
+      name='created_tstamp', full_name='user.v1.Review.created_tstamp', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -630,8 +599,8 @@ _REVIEW = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=982,
-  serialized_end=1093,
+  serialized_start=942,
+  serialized_end=1061,
 )
 
 _CREATEUSERREQUEST.fields_by_name['role'].enum_type = _ROLE
@@ -641,14 +610,14 @@ _NEARBYRESULT.fields_by_name['users'].message_type = _USER
 _REVIEWREQUEST.fields_by_name['user_id'].message_type = _UUID
 _REVIEWRESPONSE.fields_by_name['reviews'].message_type = _REVIEW
 _SUBMITREVIEWREQUEST.fields_by_name['user_id'].message_type = _UUID
-_UPDATEPOINTSREQUEST.fields_by_name['user_id'].message_type = _UUID
+_UPDATESCOREREQUEST.fields_by_name['user_id'].message_type = _UUID
 _USERTAGSREQUEST.fields_by_name['user_id'].message_type = _UUID
 _USER.fields_by_name['id'].message_type = _UUID
 _USER.fields_by_name['joined_tstamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _USER.fields_by_name['role'].enum_type = _ROLE
 _USER.fields_by_name['reviews'].message_type = _REVIEW
 _REVIEW.fields_by_name['id'].message_type = _UUID
-_REVIEW.fields_by_name['tstamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_REVIEW.fields_by_name['created_tstamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 DESCRIPTOR.message_types_by_name['CreateUserRequest'] = _CREATEUSERREQUEST
 DESCRIPTOR.message_types_by_name['DeleteUserRequest'] = _DELETEUSERREQUEST
 DESCRIPTOR.message_types_by_name['NearbyRequest'] = _NEARBYREQUEST
@@ -656,8 +625,7 @@ DESCRIPTOR.message_types_by_name['NearbyResult'] = _NEARBYRESULT
 DESCRIPTOR.message_types_by_name['ReviewRequest'] = _REVIEWREQUEST
 DESCRIPTOR.message_types_by_name['ReviewResponse'] = _REVIEWRESPONSE
 DESCRIPTOR.message_types_by_name['SubmitReviewRequest'] = _SUBMITREVIEWREQUEST
-DESCRIPTOR.message_types_by_name['UpdatePointsRequest'] = _UPDATEPOINTSREQUEST
-DESCRIPTOR.message_types_by_name['PointsResult'] = _POINTSRESULT
+DESCRIPTOR.message_types_by_name['UpdateScoreRequest'] = _UPDATESCOREREQUEST
 DESCRIPTOR.message_types_by_name['UserTagsRequest'] = _USERTAGSREQUEST
 DESCRIPTOR.message_types_by_name['TagsResult'] = _TAGSRESULT
 DESCRIPTOR.message_types_by_name['UUID'] = _UUID
@@ -715,19 +683,12 @@ SubmitReviewRequest = _reflection.GeneratedProtocolMessageType('SubmitReviewRequ
   })
 _sym_db.RegisterMessage(SubmitReviewRequest)
 
-UpdatePointsRequest = _reflection.GeneratedProtocolMessageType('UpdatePointsRequest', (_message.Message,), {
-  'DESCRIPTOR' : _UPDATEPOINTSREQUEST,
+UpdateScoreRequest = _reflection.GeneratedProtocolMessageType('UpdateScoreRequest', (_message.Message,), {
+  'DESCRIPTOR' : _UPDATESCOREREQUEST,
   '__module__' : 'user_pb2'
-  # @@protoc_insertion_point(class_scope:user.v1.UpdatePointsRequest)
+  # @@protoc_insertion_point(class_scope:user.v1.UpdateScoreRequest)
   })
-_sym_db.RegisterMessage(UpdatePointsRequest)
-
-PointsResult = _reflection.GeneratedProtocolMessageType('PointsResult', (_message.Message,), {
-  'DESCRIPTOR' : _POINTSRESULT,
-  '__module__' : 'user_pb2'
-  # @@protoc_insertion_point(class_scope:user.v1.PointsResult)
-  })
-_sym_db.RegisterMessage(PointsResult)
+_sym_db.RegisterMessage(UpdateScoreRequest)
 
 UserTagsRequest = _reflection.GeneratedProtocolMessageType('UserTagsRequest', (_message.Message,), {
   'DESCRIPTOR' : _USERTAGSREQUEST,
@@ -772,8 +733,8 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=1125,
-  serialized_end=1558,
+  serialized_start=1093,
+  serialized_end=1524,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -821,11 +782,11 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='UpdatePoints',
-    full_name='user.v1.UserService.UpdatePoints',
+    name='UpdateScore',
+    full_name='user.v1.UserService.UpdateScore',
     index=5,
     containing_service=None,
-    input_type=_UPDATEPOINTSREQUEST,
+    input_type=_UPDATESCOREREQUEST,
     output_type=_USER,
     serialized_options=None,
   ),

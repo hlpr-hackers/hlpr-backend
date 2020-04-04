@@ -1,5 +1,5 @@
 compile_proto_py: 
-	protoc --proto_path=protos --python_out=build/gen protos/task.proto protos/user.proto
+	protoc --proto_path=protos --python_out=.backend/stubs protos/task.proto protos/user.proto
 
 
 compile_grpc_py: 

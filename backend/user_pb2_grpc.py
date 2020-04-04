@@ -39,9 +39,9 @@ class UserServiceStub(object):
         request_serializer=user__pb2.SubmitReviewRequest.SerializeToString,
         response_deserializer=user__pb2.Review.FromString,
         )
-    self.UpdatePoints = channel.unary_unary(
-        '/user.v1.UserService/UpdatePoints',
-        request_serializer=user__pb2.UpdatePointsRequest.SerializeToString,
+    self.UpdateScore = channel.unary_unary(
+        '/user.v1.UserService/UpdateScore',
+        request_serializer=user__pb2.UpdateScoreRequest.SerializeToString,
         response_deserializer=user__pb2.User.FromString,
         )
     self.UserTags = channel.unary_unary(
@@ -90,7 +90,7 @@ class UserServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def UpdatePoints(self, request, context):
+  def UpdateScore(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -132,9 +132,9 @@ def add_UserServiceServicer_to_server(servicer, server):
           request_deserializer=user__pb2.SubmitReviewRequest.FromString,
           response_serializer=user__pb2.Review.SerializeToString,
       ),
-      'UpdatePoints': grpc.unary_unary_rpc_method_handler(
-          servicer.UpdatePoints,
-          request_deserializer=user__pb2.UpdatePointsRequest.FromString,
+      'UpdateScore': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateScore,
+          request_deserializer=user__pb2.UpdateScoreRequest.FromString,
           response_serializer=user__pb2.User.SerializeToString,
       ),
       'UserTags': grpc.unary_unary_rpc_method_handler(

@@ -3,16 +3,17 @@ syntax = "proto3";
 package task.v1;
 import "google/protobuf/timestamp.proto";
 
-//import "user.proto";
 
 service TaskService {
     rpc Nearby(NearbyRequest) returns (NearbyResult) {};
     rpc Create(CreateTaskRequest) returns (Task) {}; 
     rpc Delete(DeleteTaskRequest) returns (Task) {};
     rpc Assign(AssignTaskRequest) returns (Task) {};
-    rpc SetStatus(StatusRequest) returns (Task) {};
+    rpc SetStatus(SetStatusRequest) returns (Task) {};
     rpc ListTags(TagsRequest) returns (TagsResult) {}; 
    }
+
+/* NearbyRequest represents a request to find tasks within a given radius from current location */   
 
    message NearbyRequest {
     float lat = 1;
@@ -20,45 +21,61 @@ service TaskService {
     int32 radius = 3; 
   }
   
+/* NearbyResult represents an array of tasks */   
+
   message NearbyResult {
     repeated Task tasks = 1;
   }
   
+/* CreateTaskRequest represents a request to create a task */   
+  
   message CreateTaskRequest {
-      string name = 1; 
-      string description = 2; 
-      string tag = 3; 
+      string name = 1;  // task name 
+      string description = 2; // task description langth should be limited
+      string tag = 3;  // tag 
       int32 points = 4; // y/n ? 
   }
+
+/* DeleteTaskRequest represents a request to delete a task */   
 
   message DeleteTaskRequest {
       UUID task_id = 1; 
   }
 
+
+/* DeleteTaskRequest represents a request to to assign a task to a user */
   message AssignTaskRequest {
-      UUID user_d = 1; 
+      UUID user_id = 1; 
       UUID task_id = 2; 
   }
 
-  message StatusRequest {
+ /* SetStatusRequest represents a request to set the status of a task */ 
+  message SetStatusRequest {
       UUID task_id = 1; 
-      Status status = 2;   
+      Status status = 2;   // status UNASSIGEND, ASSIGNED, COMPLETED
   }
 
+ /* TagsRequest represents a request to list the current tags ordered by count given a start date */   
   message TagsRequest {
     google.protobuf.Timestamp created_since = 1;
   }
 
   message TagsResult {
-      repeated string tags = 1;   
+      repeated Tag tags = 1; 
+
   }
 
-// model 
+  message Tag {
+      string name = 1; 
+      int32 count = 2; 
+
+  }
 
   message UUID {
     string value = 1;
   }
 
+ /* Task represents a Task object */   
   message Task {
     UUID id = 1;
     string name = 2;
@@ -67,7 +84,7 @@ service TaskService {
     string description = 5;
     string tag = 6;
     int32 points = 7; 
-    google.protobuf.Timestamp completed_tstamp = 8;
+    google.protobuf.Timestamp completed_tstamp = 8; 
   }  
 
   enum Status {

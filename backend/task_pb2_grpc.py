@@ -5,9 +5,8 @@ import task_pb2 as task__pb2
 
 
 class TaskServiceStub(object):
-  """import "user.proto";
-
-  """
+  # missing associated documentation comment in .proto file
+  pass
 
   def __init__(self, channel):
     """Constructor.
@@ -37,7 +36,7 @@ class TaskServiceStub(object):
         )
     self.SetStatus = channel.unary_unary(
         '/task.v1.TaskService/SetStatus',
-        request_serializer=task__pb2.StatusRequest.SerializeToString,
+        request_serializer=task__pb2.SetStatusRequest.SerializeToString,
         response_deserializer=task__pb2.Task.FromString,
         )
     self.ListTags = channel.unary_unary(
@@ -48,9 +47,8 @@ class TaskServiceStub(object):
 
 
 class TaskServiceServicer(object):
-  """import "user.proto";
-
-  """
+  # missing associated documentation comment in .proto file
+  pass
 
   def Nearby(self, request, context):
     # missing associated documentation comment in .proto file
@@ -119,7 +117,7 @@ def add_TaskServiceServicer_to_server(servicer, server):
       ),
       'SetStatus': grpc.unary_unary_rpc_method_handler(
           servicer.SetStatus,
-          request_deserializer=task__pb2.StatusRequest.FromString,
+          request_deserializer=task__pb2.SetStatusRequest.FromString,
           response_serializer=task__pb2.Task.SerializeToString,
       ),
       'ListTags': grpc.unary_unary_rpc_method_handler(

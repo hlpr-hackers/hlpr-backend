@@ -9,18 +9,24 @@ service UserService {
     rpc Nearby(NearbyRequest) returns (NearbyResult) {};
     rpc Reviews(ReviewRequest) returns (ReviewResponse) {}; 
     rpc SubmitReview(SubmitReviewRequest) returns (Review) {}; 
-    rpc UpdatePoints(UpdatePointsRequest) returns (User) {}; 
+    rpc UpdateScore(UpdateScoreRequest) returns (User) {}; 
     rpc UserTags(UserTagsRequest) returns (TagsResult) {};
 }
- 
+
+/* CreateUserRequest represents a request to create a new user with a given role */
+
 message CreateUserRequest {
-    Role role = 1;
+    Role role = 1; // Indicates the users Role (Helper, Needer)
     string name = 2; 
 }
 
+/* DeleteUserRequest represents a request to delete a user provided uuid */
+
 message DeleteUserRequest {
-    UUID user_id = 1;
+    UUID user_id = 1; 
 }
+
+/* NearbyRequest represents a request to find users of certain role within a given radius from current location */
 
 message NearbyRequest {
     float lat = 1;
@@ -29,55 +35,66 @@ message NearbyRequest {
     Role role = 4; 
   }
   
-message NearbyResult {
+ /* NearbyResult represents a array of users sorted by distance */ 
+
+ message NearbyResult {
     repeated User users = 1;
   }
+
+/* ReviewRequest represents a request  to get reviews for a given User */ 
 
 message ReviewRequest {
     UUID user_id = 1; 
 }
 
+/* ReviewResponse represents an array of reviews for a user sorted by created_tstamp */ 
+
 message ReviewResponse {
     repeated Review reviews = 1;
 }
 
+/* SubmitReviewRequest represents a request to submit a review */ 
+
 message SubmitReviewRequest {
     UUID user_id = 1; 
-    string review = 2;
-    int32 rating = 3; 
+    string review = 2; //Review string, should probably be limited in length 
+    int32 rating = 3;  // User rating between 1-5 TODO: make enum 
 }
 
-message UpdatePointsRequest {
+/* UpdatePointsRequest represents a request to updated the point value for the user */ 
+
+message UpdateScoreRequest {
     UUID user_id = 1; 
     int32 value = 2; 
 }
 
-message PointsResult {
-    int32 total_points = 1; 
-}
+/* UserTagsRequest represents a request to get the tags (categories) for a user */ 
 
 message UserTagsRequest {
     UUID user_id = 1; 
 }
 
+
+/* TagsResult represents a response with the users tags  */ 
+
 message TagsResult {
-    repeated string tags = 1; 
+    repeated string tags = 1; // list of user tags 
 }
 
-
-// model
-
 message UUID {
-    string value = 1;
+    string value = 1; 
   }
+
+
+/* User represents the user object  */ 
 
 message User {
     UUID id = 1;
     string name = 2;
     google.protobuf.Timestamp joined_tstamp = 3;
-    Role role = 4; 
-    int32 avg_rating = 5;   
-    int32 points = 6; 
+    Role role = 4;  // HLPR, NDR
+    float avg_rating = 5;   
+    int32 score = 6; 
     string city = 7;
     string country = 8;
     string postalCode = 9;
@@ -95,5 +112,5 @@ message Review {
     UUID id = 1; 
     string review = 2;
     int32 rating = 3; 
-    google.protobuf.Timestamp tstamp = 4;
+    google.protobuf.Timestamp created_tstamp = 4;
 }  

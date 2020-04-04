@@ -12,7 +12,6 @@ import user_pb2_grpc
 class UserServicer(user_pb2_grpc.UserServiceServicer):
     """Provides methods that implement functionality of user server."""
 
-
     def __init__(self):
         pass 
 
@@ -31,7 +30,7 @@ class UserServicer(user_pb2_grpc.UserServiceServicer):
     def SubmitReview(self, request, context):
         pass
 
-    def UpdatePoints(self, request, context): 
+    def UpdateScore(self, request, context): 
         pass
 
     def UserTags(self, request, context):

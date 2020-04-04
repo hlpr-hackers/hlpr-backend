@@ -9,7 +9,6 @@ import task_pb2
 import task_pb2_grpc
 
 
-
 class TaskServicer(task_pb2_grpc.TaskServiceServicer):
     """Provides methods that implement functionality of task server."""
 
