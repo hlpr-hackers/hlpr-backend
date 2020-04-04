@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package user.v1;
+import "google/protobuf/timestamp.proto";
+import "task.proto"; 
+
+service UserService {
+    rpc Create(CreateUserRequest) returns (User) {}; 
+    rpc Delete(DeleteUserRequest) returns (User) {}; 
+    rpc Nearby(NearbyRequest) returns (NearbyResult) {};
+    rpc Reviews(ReviewRequest) returns (ReviewResponse) {}; 
+    rpc SubmitReview(SubmitReviewRequest) returns (Review) {}; 
+    rpc UpdateScore(UpdateScoreRequest) returns (User) {}; 
+    rpc UserTags(UserTagsRequest) returns (TagsResult) {};
+    rpc UserTasks(UserTaskRequest) returns (TaskResult) {}; 
+}
+
+/* CreateUserRequest represents a request to create a new user with a given role */
+
+message CreateUserRequest {
+    Role role = 1; // Indicates the users Role (Helper, Needer)
+    string name = 2; 
+    int32 phone_number = 3; 
+}
+
+/* DeleteUserRequest represents a request to delete a user provided uuid */
+
+message DeleteUserRequest {
+    UUID user_id = 1; 
+}
+
+/* NearbyRequest represents a request to find users of certain role within a given radius from current location */
+
+message NearbyRequest {
+    float lat = 1;
+    float lon = 2;
+    int32 radius = 3; 
+    Role role = 4; 
+  }
+  
+ /* NearbyResult represents a array of users sorted by distance */ 
+
+ message NearbyResult {
+    repeated User users = 1;
+  }
+
+/* ReviewRequest represents a request  to get reviews for a given User */ 
+
+message ReviewRequest {
+    UUID user_id = 1; 
+}
+
+/* ReviewResponse represents an array of reviews for a user sorted by created_tstamp */ 
+
+message ReviewResponse {
+    repeated Review reviews = 1;
+}
+
+/* SubmitReviewRequest represents a request to submit a review */ 
+
+message SubmitReviewRequest {
+    UUID user_id = 1; 
+    string review = 2; //Review string, should probably be limited in length 
+    int32 rating = 3;  // User rating between 1-5
+}
+
+/* UpdatePointsRequest represents a request to updated the point value for the user */ 
+
+message UpdateScoreRequest {
+    UUID user_id = 1; 
+    int32 value = 2; 
+}
+
+/* UserTagsRequest represents a request to get the tags (categories) for a user */ 
+
+message UserTagsRequest {
+    UUID user_id = 1; 
+}
+
+
+/* TagsResult represents a response with the users tags  */ 
+
+message TagsResult {
+    repeated string tags = 1; // list of user tags 
+}
+
+/* UserTagsRequest represents a request to get the tasks for a specific status for a user  */ 
+
+message UserTaskRequest {
+    UUID user_id = 1; 
+    task.v1.Status status = 2;
+}
+
+
+/* UserTagsReuslt represents a repsonse containing the list of User tasks */ 
+
+message TaskResult {
+    repeated task.v1.Task tasks = 1; 
+}
+
+message UUID {
+    string value = 1; 
+  }
+
+
+/* User represents the user object  */ 
+
+message User {
+    UUID id = 1;
+    string name = 2;
+    int32 phone_number = 3;
+    google.protobuf.Timestamp joined_tstamp = 4;
+    Role role = 5;  // HLPR, NDR
+    float avg_rating = 6;   
+    int32 score = 7; 
+    string city = 8;
+    string country = 9;
+    string postalCode = 10;
+    float lat = 11;
+    float lon = 12;
+    Review reviews = 13; 
+    task.v1.Task tasks = 14; 
+  }
+  
+enum Role {
+     HLPR = 0; 
+     NEEDR = 1;  
+  }
+
+message Review {
+    UUID id = 1; 
+    string review = 2;
+    int32 rating = 3; 
+    google.protobuf.Timestamp created_tstamp = 4;
+}  
