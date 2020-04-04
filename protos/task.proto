@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package task.v1;
+import "google/protobuf/timestamp.proto";
+import "user.proto";
+
+service TaskService {
+    rpc Nearby(NearbyRequest) returns (NearbyResult) {};
+    rpc Create(CreateTaskRequest) returns (Task) {}; 
+    rpc Delete(DeleteTaskRequest) returns (Task) {};
+    rpc Assign(AssignTaskRequest) returns (Task) {};
+    rpc SetStatus(StatusRequest) returns (Task) {};
+    rpc ListTags(TagsRequest) returns (TagsResult) {}; 
+   }
+
+   message NearbyRequest {
+    float lat = 1;
+    float lon = 2;
+    int32 radius = 3; 
+  }
+  
+  message NearbyResult {
+    repeated Task tasks = 1;
+  }
+  
+  message CreateTaskRequest {
+      string name = 1; 
+      string description = 2; 
+      string tag = 3; 
+      int32 points = 4; // y/n ? 
+  }
+
+  message DeleteTaskRequest {
+      required UUID task_id = 1; 
+  }
+
+  message AssignTaskRequest {
+      required UUID user_d = 1; 
+      required UUID task_id = 2; 
+  }
+
+  message StatusRequest {
+      required UUID task_id = 1; 
+      required Status status = 2;   
+  }
+
+  message TagsRequest {
+    google.protobuf.Timestamp created_since = 1;
+  }
+
+  message TagsResult {
+      repeated string tags = 1;   
+  }
+
+// model 
+
+  message UUID {
+    required string value = 1;
+  }
+
+  message Task {
+    required UUID id = 1;
+    string name = 2;
+    Status status = 3; 
+    google.protobuf.Timestamp submission_tstamp = 3;
+    string description = 4;
+    string tag = 5;
+    int32 points = 6; 
+    google.protobuf.Timestamp completed_tstamp = 9;
+  }  
+
+  enum Status {
+    UNASSIGEND = 1; 
+    ASSIGNED = 2; 
+    COMPLETED = 3; 
+}
+

@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package user.v1;
+import "google/protobuf/timestamp.proto";
+
+import "task.proto";
+
+service UserService {
+    rpc Create(CreateUserRequest) returns (User) {}; 
+    rpc Delete(DeleteUserRequest) returns (User) {}; 
+    rpc Nearby(NearbyRequest) returns (NearbyResult) {};
+    rpc Reviews(ReviewRequest) returns (ReviewResponse) {}; 
+    rpc SubmitReview(SubmitReviewRequest) returns (Review) {}; 
+    rpc UpdatePoints(UpdatePointsRequest) returns (User) {}; 
+    rpc UserTags(UserTagsRequest) returns (TagsResult) {};
+}
+ 
+message CreateUserRequest {
+    Role role = 1;
+    string name = 1; 
+}
+
+message DeleteUserRequest {
+    UUID user_id = 1;
+}
+
+message NearbyRequest {
+    float lat = 1;
+    float lon = 2;
+    int32 radius = 3; 
+    Role role = 4; 
+  }
+  
+message NearbyResult {
+    repeated User users = 1;
+  }
+
+message ReviewRequest {
+    UUID user_id = 1; 
+}
+
+message ReviewResponse {
+    repeated Review reviews = 1;
+}
+
+message SubmitReviewRequest {
+    required UUID user_id = 1; 
+    string review = 2;
+    int32 rating = 3; 
+}
+
+message UpdatePointsRequest {
+    required UUID user_id = 1; 
+    int32 value = 2; 
+}
+
+message PointsResult {
+    int32 total_points
+}
+
+message UserTagsRequest {
+    required UUID user_id = 1; 
+}
+
+message TagsResult {
+    repeated tags = 1; 
+}
+
+
+// model
+
+message UUID {
+    required string value = 1;
+  }
+
+message User {
+    required UUID id = 1;
+    string name = 2;
+    google.protobuf.Timestamp joined_tstamp = 3;
+    Role role = 4; 
+    int32 avg_rating = 5;   
+    int32 points = 6; 
+    string city = 7;
+    string country = 8;
+    string postalCode = 9;
+    float lat = 10;
+    float lon = 11;
+    Review reviews = 12; 
+  }
+  
+enum Role {
+     HLPR = 1; 
+     NEEDR = 2;  
+  }
+
+message Review {
+    required UUID id = 1; 
+    string review = 2;
+    int32 rating = 3; 
+    google.protobuf.Timestamp tstamp = 4;
+}  
