@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package user.v1;
+import "google/protobuf/timestamp.proto";
+
+service Task {
+    rpc GetNearbyTasks(Request) returns (Result);
+   
+   }
+
+  message Request {
+    float lat = 1;
+    float lon = 2;
+  }
+  
+  message Result {
+    repeated Task tasks = 1;
+  }
+  
+  
+  message Task {
+    int32 id = 1;
+    string name = 2;
+    status status = 3; 
+    google.protobuf.Timestamp submission_tstamp = 3;
+    string description = 4;
+    string tag = 5;
+    int32 points = 6; 
+    google.protobuf.Timestamp completed_tstamp = 9;
+  }
+  
+
+  message User {
+    string name = 1;
+    int32 id = 2;
+    google.protobuf.Timestamp joined_tstamp = 3;
+    user_type user_type = 4; // hlpr , 6feetunder
+    int32 rating = 5;   
+    int32 points = 6; 
+    string city = 7;
+    string country = 8;
+    string postalCode = 9;
+    float lat = 10;
+    float lon = 11;
+    Review reviews = 12; 
+  }
+  
+  message Review {
+      string review = 1; 
+      int32 id = 2; 
+      google.protobuf.Timestamp tstamp = 3;
+  }
+
+  enum user_type {
+     HLPR = 1; 
+     CITIZEN = 2;   
+  }
+
+  enum status {
+      UNASSIGEND = 1; 
+      ASSIGNED = 2; 
+      COMPLETED = 3; 
+  }
+
+
+//getReviews  
+
+//getNearbyTasks  
+
+//getTaskOwner 
+
+//getTags
+
+//createUser 
+
+//createTask 
+
+//assignTask 
+
+//completeTask 
+
+//deleteTask 
+
+//assignPoints
+
+// Services: Task, User 
