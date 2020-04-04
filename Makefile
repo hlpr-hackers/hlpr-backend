@@ -1,7 +1,7 @@
 GIT_COMMIT=$(shell git rev-parse --verify HEAD)
 PROJECT_NAME=hlpr
 PROTO_DIR=./$(PROJECT_NAME)/proto
-STUB_DIR=./$(PROJECT_NAME)/stubs
+STUB_DIR=./$(PROJECT_NAME)/services/stubs
 
 .PHONY: protogen_py
 protogen_py: 
@@ -12,6 +12,7 @@ protogen_py:
 .PHONY: run-grpc-api-task-server
 run-grpc-api-task-server:
 	python -m $(PROJECT_NAME).apis.task_server
+
 
 .PHONY: run-grpc-api-user-server
 run-grpc-api-user-server:
