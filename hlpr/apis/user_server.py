@@ -5,7 +5,7 @@ import logging
 
 import grpc
 
-from hlpr.stubs import user_pb2, user_pb2_grpc
+from hlpr.services.stubs import user_pb2, user_pb2_grpc
 
 class UserServicer(user_pb2_grpc.UserServiceServicer):
     """Provides methods that implement functionality of user server."""

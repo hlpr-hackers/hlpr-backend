@@ -5,7 +5,7 @@ import logging
 
 import grpc
 
-from hlpr.stubs import task_pb2, task_pb2_grpc
+from hlpr.services.stubs import task_pb2, task_pb2_grpc
 
 
 class TaskServicer(task_pb2_grpc.TaskServiceServicer):
