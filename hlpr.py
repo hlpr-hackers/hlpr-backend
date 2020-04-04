@@ -1,5 +1,5 @@
 from app import create_app
-from app.models import User
+from app.models import User, Helper, Service
 
 app = create_app()
 
@@ -13,4 +13,4 @@ in interactive shell
 
 @app.shell_context_processor
 def make_shell_context():
-    return {'User': User}
+    return {'User': User, 'Helper': Helper, 'Service': Service}
