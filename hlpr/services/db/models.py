@@ -12,10 +12,11 @@ BASE = declarative_base()
 class User(BASE):
     __abstract__ = True
     id = Column(Integer, primary_key=True)
-    name = Column(String(64), index=True, unique=True)
+    name = Column(String(64))
+    phone_number = Column(String(24), index=True, unique=True)
     country = Column(String(64), index=True, unique=True)
     postCode = Column(Integer)
-    registered = Column(DateTime, default=datetime.datetime.utcnow)
+    joined = Column(DateTime, default=datetime.datetime.utcnow())
     lat = Column(Float)
     lon = Column(Float)
 
@@ -23,8 +24,10 @@ class User(BASE):
 class Helper(User):
     __tablename__ = "helper"
     id = Column(Integer, primary_key=True)
-    tasks = relationship("Service", backref="helper", lazy="select")
+    avg_rating = Column(Float)
+    tasks = relationship("Task", backref="helper", lazy="select")
     rating = relationship("Rating", backref="helper", lazy="select")
+    reviews = Column(String(512))
 
     def __str__(self):
         return f"User {self.name} {Helper.__tablename__}, rating {self.rating}"
@@ -33,18 +36,28 @@ class Helper(User):
 class Shopper(User):
     __tablename__ = "shopper"
     id = Column(Integer, primary_key=True)
-    tasks = relationship("Service", backref="shopper", lazy="select")
+    tasks = relationship("Task", backref="shopper", lazy="select")
+    review = relationship("Rating", backref="shopper", lazy="select")
 
     def __str__(self):
         return f"User {self.name} {Shopper.__tablename__}"
 
+    def create_task(self):
+        pass
 
-class Service(BASE):
-    __tablename__ = "service"
+
+class Task(BASE):
+    __tablename__ = "tasks"
     id = Column(Integer, primary_key=True)
-    task = Column(String(256), index=True)
+    name = Column(String(256), index=True, nullable=False)
+    description = Column(String(512))
     shopperId = Column(Integer, ForeignKey("shopper.id"), nullable=True)
     helperId = Column(Integer, ForeignKey("helper.id"), nullable=True)
+    status = Column(String(64))
+    submission_tstamp = Column(DateTime, default=datetime.datetime.utcnow())
+    completed_tstamp = Column(DateTime, default=datetime.datetime.utcnow())
+    tag = Column(String(64))
+    points = Column(Integer, nullable=False)
 
     def __str__(self):
         return (
@@ -56,9 +69,10 @@ class Service(BASE):
 class Rating(BASE):
     __tablename__ = "ratings"
     id = Column(Integer, primary_key=True)
-    rating = Column(Integer)
-    comment = Column(String(512))
+    score = Column(Integer)
+    review = Column(String(512))
     helperId = Column(Integer, ForeignKey("helper.id"), nullable=False)
+    shopperId = Column(Integer, ForeignKey("shopper.id"), nullable=False)
 
 
 BASE.metadata.create_all(ENGINE)
