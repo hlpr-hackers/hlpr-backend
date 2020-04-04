@@ -2,7 +2,8 @@ syntax = "proto3";
 
 package task.v1;
 import "google/protobuf/timestamp.proto";
-import "user.proto";
+
+//import "user.proto";
 
 service TaskService {
     rpc Nearby(NearbyRequest) returns (NearbyResult) {};
@@ -31,17 +32,17 @@ service TaskService {
   }
 
   message DeleteTaskRequest {
-      required UUID task_id = 1; 
+      UUID task_id = 1; 
   }
 
   message AssignTaskRequest {
-      required UUID user_d = 1; 
-      required UUID task_id = 2; 
+      UUID user_d = 1; 
+      UUID task_id = 2; 
   }
 
   message StatusRequest {
-      required UUID task_id = 1; 
-      required Status status = 2;   
+      UUID task_id = 1; 
+      Status status = 2;   
   }
 
   message TagsRequest {
@@ -55,11 +56,11 @@ service TaskService {
 // model 
 
   message UUID {
-    required string value = 1;
+    string value = 1;
   }
 
   message Task {
-    required UUID id = 1;
+    UUID id = 1;
     string name = 2;
     Status status = 3; 
     google.protobuf.Timestamp submission_tstamp = 4;
@@ -70,8 +71,8 @@ service TaskService {
   }  
 
   enum Status {
-    UNASSIGEND = 1; 
-    ASSIGNED = 2; 
-    COMPLETED = 3; 
+    UNASSIGEND = 0; 
+    ASSIGNED = 1; 
+    COMPLETED = 2; 
 }
 

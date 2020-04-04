@@ -3,8 +3,6 @@ syntax = "proto3";
 package user.v1;
 import "google/protobuf/timestamp.proto";
 
-import "task.proto";
-
 service UserService {
     rpc Create(CreateUserRequest) returns (User) {}; 
     rpc Delete(DeleteUserRequest) returns (User) {}; 
@@ -17,7 +15,7 @@ service UserService {
  
 message CreateUserRequest {
     Role role = 1;
-    string name = 1; 
+    string name = 2; 
 }
 
 message DeleteUserRequest {
@@ -44,13 +42,13 @@ message ReviewResponse {
 }
 
 message SubmitReviewRequest {
-    required UUID user_id = 1; 
+    UUID user_id = 1; 
     string review = 2;
     int32 rating = 3; 
 }
 
 message UpdatePointsRequest {
-    required UUID user_id = 1; 
+    UUID user_id = 1; 
     int32 value = 2; 
 }
 
@@ -59,7 +57,7 @@ message PointsResult {
 }
 
 message UserTagsRequest {
-    required UUID user_id = 1; 
+    UUID user_id = 1; 
 }
 
 message TagsResult {
@@ -70,11 +68,11 @@ message TagsResult {
 // model
 
 message UUID {
-    required string value = 1;
+    string value = 1;
   }
 
 message User {
-    required UUID id = 1;
+    UUID id = 1;
     string name = 2;
     google.protobuf.Timestamp joined_tstamp = 3;
     Role role = 4; 
@@ -89,12 +87,12 @@ message User {
   }
   
 enum Role {
-     HLPR = 1; 
-     NEEDR = 2;  
+     HLPR = 0; 
+     NEEDR = 1;  
   }
 
 message Review {
-    required UUID id = 1; 
+    UUID id = 1; 
     string review = 2;
     int32 rating = 3; 
     google.protobuf.Timestamp tstamp = 4;
