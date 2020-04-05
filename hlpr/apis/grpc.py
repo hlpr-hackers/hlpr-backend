@@ -35,12 +35,11 @@ def serve(port, shutdown_grace_duration):
 
     print('Listening on port {}'.format(port))
 
-   try:
+    try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)
     except KeyboardInterrupt:
         server.stop(shutdown_grace_duration)
-
 
 if __name__ == '__main__':
     logging.basicConfig()
