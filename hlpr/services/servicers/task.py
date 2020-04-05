@@ -45,6 +45,7 @@ class TaskServicer(task_pb2_grpc.TaskServiceServicer):
         session.add_all([task, citizen])
         session.commit()
         return task_pb2.Task(
+            id = task_pb2.UUID(value=task.UUID),
             name=task.name,
             status=task.status,
             description = task.description,
