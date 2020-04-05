@@ -115,6 +115,7 @@ Currently, the implementation can be deployed to `GKE` following this guide: htt
 - [ ] Add BankId Integration 
 - [ ] Add Swish Integration ?? 
 - [x] Add K8s Manifests 
+- [ ] Add postgres as backend db.
 
 
 ## Team description
