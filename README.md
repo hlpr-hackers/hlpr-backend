@@ -15,8 +15,6 @@ But hlpr also goes beyond the community to help businesses. This app rewards hel
 
 ## Problem description
 
-
-
 ## Solution description
 
 ## Team description
@@ -57,6 +55,17 @@ We are a team of colleagues who work in the digital department at Volvo Cars. Am
 ### Backend 
 
 The client and server code is generated from `task.proto` & `user.proto` files residing in `hlpr/proto`. 
+
+You can generate the docs using the following docker image `docker pull pseudomuto/protoc-gen-doc`: 
+
+```
+docker run --rm \
+  -v $(pwd)/docs:/out \
+  -v $(pwd)/hlpr/proto:/protos \
+  pseudomuto/protoc-gen-doc
+```
+
+> Default is `html` but you can change this with `--doc_opt=markdown,docs.md`
 
 The backend consists of two grpc python servers: 
 
