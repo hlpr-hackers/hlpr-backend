@@ -55,7 +55,7 @@ build:
 
 .PHONY: gcloud-deploy 
 gcloud-deploy: 
-	gcloud endpoints services deploy api_descriptor.pb api_config.yaml
+	gcloud endpoints services deploy $(pwd)/api_descriptor.pb $(pwd)/api_config.yaml
 
 
 	
