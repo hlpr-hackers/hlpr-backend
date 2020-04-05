@@ -27,7 +27,7 @@ We are a team of colleagues who work in the digital department at Volvo Cars. Am
 
 * Leonard Aukea: leonard.aukea@gmail.com 
 * Carolina Jaramillo: jaramillo.carolina@gmail.com 
-* Oriol Lopez Torres
+* Oriol Lopez Torres: lopez.torres.oriol@gmail.com
 * Ashwin Rajamohan: ashwin.rajamohan@gmail.com 
 * Geroge Markhulia: markhulia@gmail.om 
 
