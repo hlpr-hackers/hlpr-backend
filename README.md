@@ -1,21 +1,126 @@
 
 ![](assets/img/hlpr-logo.png)
 
+
+> **hlpr** - A submission to `Hack the Crisis - Sweden`.
+
 ## Pitch
-
-> Help communities now and businesses in the future
-
-If you have the slightest symptom, you need to stay home and self-isolate to protect others. But what does that actually mean?
-You can’t carry out many activities that belong in your day-to-day life … grocery shopping, taking your kids to the park or walking your dog. 
-If you have friends or family members whom you trust and who can help you, great! But what if you are on your own?  
-Perhaps your community can help! This is what hlpr is here to do! 
-hlpr is an easy way to connect people who can and want to help, to those who need a hand. It creates trust by encouraging both parties to leave comments and creating virtual receipts after helpers have delivered their help. 
-But hlpr also goes beyond the community to help businesses. This app rewards helpers with hlpr points. These are symbolic and enable helpers to 
+* People who have symptoms and those around them should self-isolate and stay at home meaning basic daily tasks become a hurdle and businesses lose customers hurting their economy.
+* **hlpr** is an easy-to-use app that enables those who want and can help to support those who need help with specific tasks within a certain time frame and in a trustworthy way.
+* By gamifying the experience and providing helpers with 'hlpr-points' that can be converted into giftcards or redeemed at partner businesses during transactions this app also helps businesses stay afloat under the economic pressure.
 
 
-## Problem description
+## Backend 
 
-## Solution description
+This repository contains the code for the hlpr backend. A submission to `Hack the Crisis - Sweden`.
+
+## Repo Structure 
+
+```bash 
+.
+├── Dockerfile
+├── LICENSE
+├── Makefile
+├── README.md
+├── api_config.yaml
+├── api_descriptor.pb
+├── assets
+│   └── img
+│       └── hlpr-logo.png
+├── docs
+│   ├── proto-docs.html
+│   └── proto-docs.md
+├── helpr.db
+├── hlpr
+│   ├── __init__.py
+│   ├── __init__.pyc
+│   ├── apis
+│   │   ├── __init__.py
+│   │   ├── __init__.pyc
+│   │   └── grpc.py
+│   ├── client
+│   │   ├── __init__.py
+│   │   └── client.py
+│   ├── proto
+│   │   ├── task.proto
+│   │   └── user.proto
+│   └── services
+│       ├── __init__.py
+│       ├── db
+│       │   ├── __init__.py
+│       │   ├── conn.py
+│       │   ├── helpr.db
+│       │   ├── mock.py
+│       │   └── models.py
+│       ├── servicers
+│       │   ├── __init__.py
+│       │   ├── task.py
+│       │   └── user.py
+│       └── stubs
+│           ├── __init__.py
+│           ├── task_pb2.py
+│           ├── task_pb2_grpc.py
+│           ├── user_pb2.py
+│           └── user_pb2_grpc.py
+├── kubernetes
+│   ├── deployment.yaml
+│   └── loadbalancer.yaml
+└── requirements.txt
+```
+
+## Protobuf
+
+The client and server code is generated from `task.proto` & `user.proto` files residing in `hlpr/proto`. 
+
+The stubs and descriptor can be regenerated using: 
+
+```bash
+python -m grpc_tools.protoc -I hlpr/proto \
+			--include_imports \
+			--include_source_info \
+			--python_out=hlpr/services/stubs \
+			--descriptor_set_out=api_descriptor.pb \
+			--grpc_python_out=hlpr/services/stubs hlpr/proto/user.proto hlpr/proto/task.proto 
+```
+
+The backend consits of a grpc server `hlpr/apis/grpc.py`.
+
+The actual implementation will contain 3 servicers:
+
+* `TaskServicer`
+* `UserServicer` 
+* `BountyServicer`
+
+This is where the actual logic is implemented `hlpr/services/servicers`. 
+
+### proto-docs
+
+You can generate the docs using the following docker image `docker pull pseudomuto/protoc-gen-doc`: 
+
+```bash
+docker run --rm \
+  -v $(pwd)/docs:/out \
+  -v $(pwd)/hlpr/proto:/protos \
+  pseudomuto/protoc-gen-doc
+```
+
+> Default is `html` but you can change this with `--doc_opt=markdown,docs.md`
+
+
+## Deployment
+
+Currently, the implementation can be deployed to `GKE` following this guide: https://cloud.google.com/endpoints/docs/grpc/get-started-kubernetes-engine
+
+
+## TODO 
+
+- [ ] Add auth 
+- [ ] Add bounty Service 
+- [ ] Add BankId Integration 
+- [ ] Add Swish Integration ?? 
+- [x] Add K8s Manifests 
+- [ ] Add postgres as backend db
+
 
 ## Team description
 
@@ -30,44 +135,3 @@ We are a team of colleagues who work in the digital department at Volvo Cars. Am
 * Geroge Markhulia: markhulia@gmail.om 
 
 **Github Org**: https://github.com/hlpr-hackers
-
-## Action plan
-
-
-#### Development 
-
-#### Business
-
-**Sponsors** 
-
-**Failing businesses** 
-
-## Tech description
-
-### Architecture 
-
-### Frontend 
-
-**IOS** 
-
-**Android** 
-
-### Backend 
-
-The client and server code is generated from `task.proto` & `user.proto` files residing in `hlpr/proto`. 
-
-You can generate the docs using the following docker image `docker pull pseudomuto/protoc-gen-doc`: 
-
-```
-docker run --rm \
-  -v $(pwd)/docs:/out \
-  -v $(pwd)/hlpr/proto:/protos \
-  pseudomuto/protoc-gen-doc
-```
-
-> Default is `html` but you can change this with `--doc_opt=markdown,docs.md`
-
-The backend consists of two grpc python servers: 
-
-* `user_server`
-* `task_server` 

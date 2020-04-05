@@ -1,0 +1,24 @@
+type: google.api.Service
+config_version: 3
+
+#
+# Name of the service configuration.
+#
+name: hlpr.endpoints.hack-the-crisis-hlpr.cloud.goog
+
+#
+# API title to appear in the user interface (Google Cloud Console).
+#
+title: hlpr gRPC API
+apis:
+- name: task.v1.TaskService
+- name: user.v1.UserService
+
+#
+# API usage restrictions.
+#
+usage:
+  rules:
+    # Allow unregistered calls for all methods.
+  - selector: "*"
+    allow_unregistered_calls: true
