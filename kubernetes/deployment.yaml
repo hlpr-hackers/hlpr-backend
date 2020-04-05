@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: esp-grpc-bookstore
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: esp-grpc-bookstore
+    spec:
+      # [START secret-1]
+      volumes:
+        - name: service-account-creds
+          secret:
+            secretName: service-account-creds
+      # [END secret-1]
+      # [START service]
+      containers:
+        - name: esp
+          image: gcr.io/endpoints-release/endpoints-runtime:1
+          args: [
+            "--http2_port=9000",
+            "--service=hlpr.endpoints.hack-the-crisis-hlpr.cloud.goog",
+            "--rollout_strategy=managed",
+            "--backend=grpc://127.0.0.1:8000",
+            "--service_account_key=/etc/nginx/creds/service-account-creds.json"
+          ]
+      # [END service]
+        ports:
+          - containerPort: 9000
+          # [START secret-2]
+          volumeMounts:
+            - mountPath: /etc/nginx/creds
+              name: service-account-creds
+              readOnly: true
+          # [END secret-2]
+      - name: hlpr
+        image: gcr.io/hack-the-crisis-hlpr/python-grpc-hlpr-server:latest
+        ports:
+          - containerPort: 8000
