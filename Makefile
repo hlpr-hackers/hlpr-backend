@@ -17,6 +17,26 @@ protogen_py:
 		--grpc_python_out=$(STUB_DIR) $(PROTO_DIR)/user.proto $(PROTO_DIR)/task.proto
 
 
+.PHONY: protogen_descriptor
+protogen_descriptor:
+	python -m grpc_tools.protoc -I $(PROTO_DIR) \
+			--include_imports \
+			--include_source_info \
+			--python_out=$(STUB_DIR) \
+			--descriptor_set_out=api_descriptor.pb \
+			--grpc_python_out=$(STUB_DIR) $(PROTO_DIR)/user.proto $(PROTO_DIR)/task.proto 
+	
+	
+
+
+.PHONY: generate_proto_docs 
+generate_proto_docs:
+	@rm -f docs/*
+	@$(DOCKER_CMD) --doc_opt=html,proto-docs.html
+	@$(DOCKER_CMD) --doc_opt=markdown,proto-docs.md
+	# @$(DOCKER_CMD) --doc_opt=/templates/asciidoc.tmpl,proto-docs.txt
+
+
 .PHONY: run-grpc-api-server
 run-grpc-api-server:
 	python -m $(PROJECT_NAME).apis.grpc
@@ -34,11 +54,6 @@ build:
     -t $(PROJECT_NAME):${GIT_COMMIT} \
     .
 
-.PHONY: generate_proto_docs 
-generate_proto_docs:
-	@rm -f docs/*
-	@$(DOCKER_CMD) --doc_opt=html,proto-docs.html
-	@$(DOCKER_CMD) --doc_opt=markdown,proto-docs.md
-	# @$(DOCKER_CMD) --doc_opt=/templates/asciidoc.tmpl,proto-docs.txt
+
 
 	
