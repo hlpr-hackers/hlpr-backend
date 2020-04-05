@@ -32,17 +32,3 @@ class TaskServicer(task_pb2_grpc.TaskServiceServicer):
 
     def ListTags(self, request, context):
         pass
-
-
-def serve():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    task_pb2_grpc.add_TaskServiceServicer_to_server(
-        TaskServicer(), server)
-    server.add_insecure_port('[::]:50051')
-    server.start()
-    server.wait_for_termination()
-
-
-if __name__ == '__main__':
-    logging.basicConfig()
-    serve()    

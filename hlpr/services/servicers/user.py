@@ -38,16 +38,3 @@ class UserServicer(user_pb2_grpc.UserServiceServicer):
 
     def UserTasks(self, request, context): 
         pass 
-
-def serve():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    user_pb2_grpc.add_UserServiceServicer_to_server(
-        UserServicer(), server)
-    server.add_insecure_port('[::]:50051')
-    server.start()
-    server.wait_for_termination()
-
-
-if __name__ == '__main__':
-    logging.basicConfig()
-    serve()

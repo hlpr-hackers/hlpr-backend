@@ -10,22 +10,16 @@ DOCKER_CMD=docker run --rm \
 			pseudomuto/protoc-gen-doc
 
 
-
 .PHONY: protogen_py
 protogen_py: 
 	python -m grpc_tools.protoc -I $(PROTO_DIR) \
 		--python_out=$(STUB_DIR) \
 		--grpc_python_out=$(STUB_DIR) $(PROTO_DIR)/user.proto $(PROTO_DIR)/task.proto
 
-.PHONY: run-grpc-api-task-server
-run-grpc-api-task-server:
-	python -m $(PROJECT_NAME).apis.task_server
 
-
-.PHONY: run-grpc-api-user-server
-run-grpc-api-user-server:
-	python -m $(PROJECT_NAME).apis.user_server
-
+.PHONY: run-grpc-api-server
+run-grpc-api-server:
+	python -m $(PROJECT_NAME).apis.grpc
 
 # One for each service
 .PHONY: build
