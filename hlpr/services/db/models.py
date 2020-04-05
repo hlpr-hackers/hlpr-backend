@@ -12,7 +12,7 @@ BASE = declarative_base()
 class User(BASE):
     __abstract__ = True
     id = Column(Integer, primary_key=True)
-    name = Column(String(64))
+    name = Column(String(64), unique=False)
     phone_number = Column(String(24), index=True, unique=True)
     country = Column(String(64), index=True, unique=True)
     postCode = Column(Integer)
