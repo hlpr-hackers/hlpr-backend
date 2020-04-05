@@ -21,6 +21,10 @@ protogen_py:
 run-grpc-api-server:
 	python -m $(PROJECT_NAME).apis.grpc
 
+.PHONY: run-client
+run-client:
+	python -m $(PROJECT_NAME).client.client	
+
 # One for each service
 .PHONY: build
 build:
