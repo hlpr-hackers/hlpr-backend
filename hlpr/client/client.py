@@ -6,9 +6,12 @@ import grpc
 
 from hlpr.services.stubs import task_pb2, task_pb2_grpc, user_pb2, user_pb2_grpc
 
+
 def create_task(task_stub, task):
     feature = task_stub.Create(task_pb2.CreateTaskRequest(**task))
-    print(f'{task} Created!')
+    print(f"{task} Created!")
+
+
 
 def run(host, port):
 
@@ -16,11 +19,11 @@ def run(host, port):
     with grpc.insecure_channel(f'{host}:{port}') as channel:
         task_stub = task_pb2_grpc.TaskServiceStub(channel)
         # user_stub = user_pb2_grpc.UserServiceStub(channel)
-        print('---------CREATE TASK--------------')
+        print("---------CREATE TASK--------------")
         create_task(task_stub, task)
-   
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     logging.basicConfig()
     parser = argparse.ArgumentParser(
         description=__doc__,
@@ -33,3 +36,4 @@ if __name__ == '__main__':
         '--timeout', type=int, default=10, help='The call timeout, in seconds')
     args = parser.parse_args()
     run(args.host, args.port)
+
