@@ -114,7 +114,7 @@ Currently, the implementation can be deployed to `GKE` following this guide: htt
 - [ ] Add bounty Service 
 - [ ] Add BankId Integration 
 - [ ] Add Swish Integration ?? 
-- [ ] Add K8s Manifests 
+- [x] Add K8s Manifests 
 
 
 ## Team description

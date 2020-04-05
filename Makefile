@@ -2,7 +2,10 @@ GIT_COMMIT=$(shell git rev-parse --verify HEAD)
 PROJECT_NAME=hlpr
 PROTO_DIR=./$(PROJECT_NAME)/proto
 STUB_DIR=./$(PROJECT_NAME)/services/stubs
-
+GCR_PROJECT=hack-the-crisis-hlpr
+IMAGE_NAME=python-grpc-hlpr-server
+GCR_REGISTRY=gcr.io/$(GCR_PROJECT)/$(IMAGE_NAME)
+  
 
 DOCKER_CMD=docker run --rm \
 			-v $(pwd)/docs:/out \
@@ -48,8 +51,8 @@ run-client:
 build:
 	docker build \
     --build-arg GIT_COMMIT=${GIT_COMMIT} \
-    -t $(PROJECT_NAME):latest \
-    -t $(PROJECT_NAME):${GIT_COMMIT} \
+    -t $(GCR_REGISTRY):latest \
+    -t $(GCR_REGISTRY):${GIT_COMMIT} \
     .
 
 
