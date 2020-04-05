@@ -105,7 +105,7 @@ docker run --rm \
 
 ## Deployment
 
-
+Currently, the implementation can be deployed to `GKE` following this guide: https://cloud.google.com/endpoints/docs/grpc/get-started-kubernetes-engine
 
 
 ## TODO 
