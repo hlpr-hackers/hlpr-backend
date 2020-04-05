@@ -24,11 +24,6 @@ def serve(port, shutdown_grace_duration):
     user_pb2_grpc.add_UserServiceServicer_to_server(
         UserServicer(), server)
 
-    # start server
-    # address = '%s:%s' % (os.environ['HOST'], os.environ['PORT'])
-    # logging.info('Starting grpc server at %s', address)
-    # server.add_insecure_port(address)
-
     server.add_insecure_port(f'[::]:{port}')
     server.start()
     server.wait_for_termination()

@@ -49,7 +49,7 @@ run-client:
 # One for each service
 .PHONY: build
 build:
-	docker build \
+	docker build --no-cache\
     --build-arg GIT_COMMIT=${GIT_COMMIT} \
     -t $(GCR_REGISTRY):latest \
     -t $(GCR_REGISTRY):${GIT_COMMIT} \
