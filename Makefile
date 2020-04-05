@@ -27,8 +27,6 @@ protogen_descriptor:
 			--grpc_python_out=$(STUB_DIR) $(PROTO_DIR)/user.proto $(PROTO_DIR)/task.proto 
 	
 	
-
-
 .PHONY: generate_proto_docs 
 generate_proto_docs:
 	@rm -f docs/*
@@ -54,6 +52,10 @@ build:
     -t $(PROJECT_NAME):${GIT_COMMIT} \
     .
 
+
+.PHONY: gcloud-deploy 
+gcloud-deploy: 
+	gcloud endpoints services deploy api_descriptor.pb api_config.yaml
 
 
 	
