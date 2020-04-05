@@ -5,7 +5,6 @@ from concurrent import futures
 import grpc
 
 from hlpr.services.stubs import task_pb2, task_pb2_grpc, user_pb2, user_pb2_grpc
-
 from hlpr.services.servicers import (
     TaskServicer, UserServicer)
 
@@ -34,7 +33,7 @@ def serve():
     server.wait_for_termination()
 
     # mark server as healthy
-    logging.info('grpc listening at %s', address)
+    #logging.info('grpc listening at %s', address)
 
     # start() does not block so sleep-loop
     try:
