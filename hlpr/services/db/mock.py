@@ -51,7 +51,7 @@ def create_task(session, tasks):
         task.tag = attrib[2]
         task.points = attrib[3]
         task.shopperId = shopper.id
-        shopper.task = task
+        shopper.tasks.append(task)
         session.add_all([task, shopper])
         session.commit()
 
@@ -60,7 +60,12 @@ def assign_tasks(session, helpers):
     tasks = session.query(Task).all()
     for helper_num in helpers:
         helper = session.query(Helper).filter(Helper.phone_number == helper_num).first()
-        task = tasks.pop(random.choice(tasks))
+        task = random.choice(tasks)
+        tasks.remove(task)
+        task.helperId = helper.id
+        helper.tasks.append(task)
+        session.add_all([task, helper])
+        session.commit()
 
 
 if __name__ == "__main__":
@@ -124,9 +129,12 @@ if __name__ == "__main__":
 
     SESSION = sessionmaker(bind=engine)
     session = SESSION()
+    ## Drop the table. To recreate a table run `python models.py`
+    # drop_all(engine)
 
+    ## Uncomment lines below to populate database with sample data
     # create_helper(session, helpers_collection)
     # create_shopper(session, shoppers_collection)
     # create_task(session, tasks_collection)
-    helpers = random.sample(helper_numbers, 2)
-    assign_tasks(session, helpers)
+    # helpers = random.sample(helper_numbers, 2)
+    # assign_tasks(session, helpers)
