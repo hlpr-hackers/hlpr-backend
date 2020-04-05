@@ -13,7 +13,7 @@ def create_task(task_stub, task):
 
 def run():
     task = dict(
-        name="task1", description="I need help", tag="food", points=10, UUID="0738492"
+        name="task1", description="I need help", tag="food", points=10, UUID="0738491"
     )
     with grpc.insecure_channel("localhost:50051") as channel:
         task_stub = task_pb2_grpc.TaskServiceStub(channel)

@@ -17,7 +17,6 @@ class User(BASE):
     phone_number = Column(String(24), index=True, unique=True)
     country = Column(String(64), index=True, unique=True)
     postCode = Column(Integer)
-    joined = Column(DateTime, default=datetime.datetime.utcnow())
     lat = Column(Float)
     lon = Column(Float)
 

@@ -77,7 +77,7 @@ if __name__ == "__main__":
     try:
         engine = create_engine("sqlite:///helpr.db", echo=True)
         conn = engine.connect()
-        print(f"Connected to: {conn}")
+        print(f"Connected to: {engine}")
     except Exception as e:
         print(f"connection failed {e}")
         sys.exit(1)
@@ -143,8 +143,8 @@ if __name__ == "__main__":
     # drop_all(engine)
 
     ## Uncomment lines below to populate database with sample data
-    create_helper(session, helpers_collection)
-    create_citizen(session, citizens_collection)
-    create_task(session, tasks_collection)
-    helpers = random.sample(helper_numbers, 2)
-    assign_tasks(session, helpers)
+    # create_helper(session, helpers_collection)
+    # create_citizen(session, citizens_collection)
+    # create_task(session, tasks_collection)
+    # helpers = random.sample(helper_numbers, 2)
+    # assign_tasks(session, helpers)

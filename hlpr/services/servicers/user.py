@@ -13,7 +13,7 @@ class UserServicer(user_pb2_grpc.UserServiceServicer):
 
     def __init__(self):
          # Create database connection
-        self.connection = conn._connect()
+        pass
 
     def Create(self, request, context):
         pass
