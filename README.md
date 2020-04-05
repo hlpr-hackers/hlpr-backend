@@ -30,6 +30,7 @@ This repository contains the code for the hlpr backend. A submission to `Hack th
 ├── docs
 │   ├── proto-docs.html
 │   └── proto-docs.md
+├── helpr.db
 ├── hlpr
 │   ├── __init__.py
 │   ├── __init__.pyc
@@ -61,6 +62,9 @@ This repository contains the code for the hlpr backend. A submission to `Hack th
 │           ├── task_pb2_grpc.py
 │           ├── user_pb2.py
 │           └── user_pb2_grpc.py
+├── kubernetes
+│   ├── deployment.yaml
+│   └── loadbalancer.yaml
 └── requirements.txt
 ```
 
@@ -115,7 +119,7 @@ Currently, the implementation can be deployed to `GKE` following this guide: htt
 - [ ] Add BankId Integration 
 - [ ] Add Swish Integration ?? 
 - [x] Add K8s Manifests 
-- [ ] Add postgres as backend db.
+- [ ] Add postgres as backend db
 
 
 ## Team description
